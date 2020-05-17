@@ -28,8 +28,6 @@ const colors = {
 };
 
 function generateHTML(data) {
-    console.log("this is data" + JSON.stringify(data))
-    console.log("this is favecolor" + JSON.stringify(data.faveColor))
   return `<!DOCTYPE html>
 <html lang="en">
    <head>

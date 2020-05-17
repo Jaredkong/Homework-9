@@ -53,18 +53,14 @@ async function getTotalStars(username) {
     try {
         const response = await axios.get(`https://api.github.com/users/${username}/repos`)
 
-        console.log("hello" + response.data[1].stargazers_count)
-        console.log(parseInt(response.data[1].stargazers_count) + parseInt(response.data[5].stargazers_count) )
-
         let totalStars = 0
         for (var i=0; i < response.data.length; i++) {
            
-            console.log(i)
+           
             totalStars += parseInt(response.data[i].stargazers_count)
          
         }
-        console.log("we adding numbers" + response.data[7].stargazers_count,response.data[5].stargazers_count,response.data[1].stargazers_count)
-        console.log("THIS IS WHATEVER" + totalStars)
+     
         return totalStars
     }
     catch(err){
@@ -77,11 +73,8 @@ async function getTotalStars(username) {
 async function init () {
     try{
         const {github: githubUsername, faveColor } = await inquirer.prompt(questions);
-        console.log (`searching for ${githubUsername}`);
         getUser(githubUsername);
         const totalStars = await getTotalStars(githubUsername);
-        console.log("here is your favorite color!!" + faveColor)
-        console.log("here r ur totl stars" + totalStars);
         const html = generateHTML ({
             githubUsername,
             faveColor,
@@ -111,7 +104,6 @@ function generatePDF(html){
         if (err) {
             return console.error(err);
         }
-    console.log('successfully created resume', res.filename);
     open(resumeFilePath);
   });
 }
